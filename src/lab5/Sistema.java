@@ -18,4 +18,23 @@ public class Sistema {
 	public int cadastrarCenario(String descricao) {
 		return this.controleCenarios.cadastrarCenario(descricao);
 	}
+	
+	public String exibirCenario(int cenario) {
+		return this.controleCenarios.exibirCenario(cenario);
+	}
+	
+	public String exibirCenarios() {
+		int cenariosCadastrados = this.controleCenarios.cenariosCadastrados();
+		String listagem = "";
+		
+		for(int i = 0; i < cenariosCadastrados; i++) {
+			listagem += this.controleCenarios.exibirCenario(i+1) + System.lineSeparator();
+		}
+		
+		return listagem;
+	}
+	
+	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
+		this.controleCenarios.cadastrarAposta(cenario, apostador, valor, previsao);
+	}
 }

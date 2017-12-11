@@ -11,11 +11,22 @@ public class Facade {
 		return this.sistema.getCaixa();
 	}
 	
+	public int cadastrarCenario(String descricao) {
+		return this.sistema.cadastrarCenario(descricao);
+	}
+	
+	public String exibirCenario(int cenario) {
+		return this.sistema.exibirCenario(cenario);
+	}
+	
+	public String exibirCenarios() {
+		return this.sistema.exibirCenarios();
+	}
+	
+	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
+		this.sistema.cadastrarAposta(cenario, apostador, valor, previsao);
+	}
 	/*
-	public int cadastrarCenario()
-	public String exibirCenario(int cenario) 
-	public String exibirCenarios()
-	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao)
 	public int valorTotalDeApostas(int cenario)
 	public int totalDeApostas(int cenario)
 	public String exibeApostas(int cenario)
