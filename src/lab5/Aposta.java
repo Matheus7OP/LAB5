@@ -15,6 +15,14 @@ public class Aposta {
 		this.previsao = previsao;
 	}
 	
+	public int getValor() {
+		return this.valor;
+	}
+	
+	public String getPrevisao() {
+		return this.previsao;
+	}
+	
 	@Override
 	public String toString() {
 		String informacao = "";

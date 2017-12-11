@@ -26,4 +26,24 @@ public class ControleCenarios {
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
 		this.conjuntoCenarios.get(cenario - 1).cadastrarAposta(apostador, valor, previsao);
 	}
+	
+	public int valorTotalDeApostas(int cenario) {
+		return this.conjuntoCenarios.get(cenario - 1).valorTotalDeApostas();
+	}
+	
+	public int totalDeApostas(int cenario) {
+		return this.conjuntoCenarios.get(cenario - 1).totalDeApostas();
+	}
+	
+	public String exibeApostas(int cenario) {
+		return this.conjuntoCenarios.get(cenario - 1).exibeApostas();
+	}
+	
+	public void fecharAposta(int cenario, boolean ocorreu) {
+		this.conjuntoCenarios.get(cenario - 1).fecharAposta(ocorreu);
+	}
+	
+	public int getCaixa(int cenario) {
+		return this.conjuntoCenarios.get(cenario - 1).getCaixa();
+	}
 }

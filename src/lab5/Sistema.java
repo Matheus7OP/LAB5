@@ -37,4 +37,34 @@ public class Sistema {
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
 		this.controleCenarios.cadastrarAposta(cenario, apostador, valor, previsao);
 	}
+	
+	public int valorTotalDeApostas(int cenario) {
+		return this.controleCenarios.valorTotalDeApostas(cenario);
+	}
+	
+	public int totalDeApostas(int cenario) {
+		return this.controleCenarios.valorTotalDeApostas(cenario);
+	}
+	
+	public String exibeApostas(int cenario) {
+		return this.controleCenarios.exibeApostas(cenario);
+	}
+	
+	public int getCaixaCenario(int cenario) {
+		int caixa = this.controleCenarios.getCaixa(cenario);
+		
+		double valorReal = ( (double)caixa ) * this.taxa;
+		valorReal = Math.floor(valorReal);
+		
+		return ( (int)valorReal );
+	}
+	
+	public int getTotalRateioCenario(int cenario) {
+		int caixa = this.controleCenarios.getCaixa(cenario);
+		return ( caixa - this.getCaixaCenario(cenario) );
+	}
+	
+	public void fecharAposta(int cenario, boolean ocorreu) {
+		this.controleCenarios.fecharAposta(cenario, ocorreu);
+	}
 }
