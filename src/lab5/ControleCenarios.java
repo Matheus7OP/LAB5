@@ -46,4 +46,15 @@ public class ControleCenarios {
 	public int getCaixa(int cenario) {
 		return this.conjuntoCenarios.get(cenario - 1).getCaixa();
 	}
+	
+	public String exibirCenarios() {
+		int cenariosCadastrados = this.cenariosCadastrados();
+		String listagem = "";
+		
+		for(int i = 0; i < cenariosCadastrados; i++) {
+			listagem += this.exibirCenario(i+1) + System.lineSeparator();
+		}
+		
+		return listagem;
+	}
 }

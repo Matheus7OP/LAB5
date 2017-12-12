@@ -24,14 +24,7 @@ public class Sistema {
 	}
 	
 	public String exibirCenarios() {
-		int cenariosCadastrados = this.controleCenarios.cenariosCadastrados();
-		String listagem = "";
-		
-		for(int i = 0; i < cenariosCadastrados; i++) {
-			listagem += this.controleCenarios.exibirCenario(i+1) + System.lineSeparator();
-		}
-		
-		return listagem;
+		return this.controleCenarios.exibirCenarios();
 	}
 	
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
