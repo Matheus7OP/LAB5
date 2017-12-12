@@ -3,6 +3,12 @@ package lab5;
 public class Facade {
 	private Sistema sistema;
 	
+	/**
+	 * Função utilizada para inicializar o sistema.
+	 * 
+	 * @param caixa quantidade inicial de dinheiro em caixa
+	 * @param taxa taxa a ser retirada para o sistema
+	 */
 	public void inicializa(int caixa, double taxa) {
 		this.sistema = new Sistema(caixa, taxa);
 	}
