@@ -26,6 +26,14 @@ public class Cenario {
 		return this.caixa;
 	}
 	
+	/**
+	 * Método utilizado para cadastrar uma nova aposta ao
+	 * sistema.
+	 * 
+	 * @param apostador nome do apostador
+	 * @param valor o valor que será apostado
+	 * @param previsao resultado esperado pelo apostador
+	 */
 	public void cadastrarAposta(String apostador, int valor, String previsao) {
 		Aposta aposta = new Aposta(apostador, valor, previsao);
 		this.apostas.add(aposta);
@@ -45,6 +53,12 @@ public class Cenario {
 		return somatorio;
 	}
 	
+	/**
+	 * Retorna uma listagem de todas as apostas feitas
+	 * no cenário.
+	 * 
+	 * @return a listagem das apostas do cenário
+	 */
 	public String exibeApostas() {
 		String listagem = "";
 		int totalDeApostas = this.totalDeApostas();

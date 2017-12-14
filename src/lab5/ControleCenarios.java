@@ -23,6 +23,15 @@ public class ControleCenarios {
 		return this.conjuntoCenarios.size();
 	}
 	
+	/**
+	 * Método utilizado para cadastrar uma nova aposta ao
+	 * sistema.
+	 * 
+	 * @param cenario id do cenário no qual a aposta será colocada
+	 * @param apostador nome do apostador
+	 * @param valor o valor que será apostado
+	 * @param previsao resultado esperado pelo apostador
+	 */
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
 		this.conjuntoCenarios.get(cenario - 1).cadastrarAposta(apostador, valor, previsao);
 	}
@@ -35,6 +44,13 @@ public class ControleCenarios {
 		return this.conjuntoCenarios.get(cenario - 1).totalDeApostas();
 	}
 	
+	/**
+	 * Retorna uma listagem de todas as apostas feitas
+	 * em um cenário.
+	 * 
+	 * @param cenario o id do cenário a ser verificado
+	 * @return a listagem das apostas do cenário
+	 */
 	public String exibeApostas(int cenario) {
 		return this.conjuntoCenarios.get(cenario - 1).exibeApostas();
 	}

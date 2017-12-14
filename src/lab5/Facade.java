@@ -1,5 +1,11 @@
 package lab5;
 
+/**
+ * Classe que abstrai o sistema para facilitar
+ * o uso das classes abstraídas.
+ * 
+ * @author Matheus Oliveira Pereira
+ */
 public class Facade {
 	private Sistema sistema;
 	
