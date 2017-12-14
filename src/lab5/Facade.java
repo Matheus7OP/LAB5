@@ -108,8 +108,8 @@ public class Facade {
 	}
 	
 	/**
-	 * Método utilizado para fechar uma aposta de determinado
-	 * cenário.
+	 * Método utilizado para fechar as apostas de determinado
+	 * cenário (o cenário é encerrado).
 	 * 
 	 * @param cenario id do cenário a ser verificado
 	 * @param ocorreu status final do cenário (se o mesmo ocorreu ou não)
@@ -120,7 +120,7 @@ public class Facade {
 	
 	/**
 	 * Retorna a quantidade de dinheiro (que pertence ao sistema)
-	 * no caixa do cenário.
+	 * presente no caixa do cenário.
 	 * 
 	 * @param cenario id do cenário a ser verificado
 	 * @return a quantidade de dinheiro no caixa do cenário
@@ -131,7 +131,7 @@ public class Facade {
 	
 	/**
 	 * Retorna a quantidade de dinheiro (que pertence aos vencedores)
-	 * no caixa do cenário.
+	 * presente no caixa do cenário.
 	 * 
 	 * @param cenario id do cenário a ser verificado
 	 * @return a quantidade de dinheiro pertencente aos vencedores do cenário

@@ -9,6 +9,12 @@ public class Cenario {
 	private ArrayList<Aposta> apostas;
 	private boolean encerrado;
 	
+	/**
+	 * Construtor do objeto Cenario.
+	 * 
+	 * @param descricao a descricao do cenario
+	 * @param id o id do cenario
+	 */
 	public Cenario(String descricao, int id) {
 		this.descricao = descricao;
 		this.finalizado = false;
@@ -18,10 +24,21 @@ public class Cenario {
 		this.caixa = 0;
 	}
 	
+	/**
+	 * Retorna o ID do cenario.
+	 * 
+	 * @return o id do cenario
+	 */
 	public int getId() {
 		return this.id;
 	}
 	
+	/**
+	 * Retorna a quantidade de dinheiro no 
+	 * caixa do cenario (em centavos).
+	 * 
+	 * @return a quantidade de dinheiro em caixa.
+	 */
 	public int getCaixa() {
 		return this.caixa;
 	}
@@ -39,10 +56,22 @@ public class Cenario {
 		this.apostas.add(aposta);
 	}
 	
+	/**
+	 * Retorna a quantidade de apostas feitas
+	 * no cenario.
+	 * 
+	 * @return a quantidade de apostas feitas nesse cenario
+	 */
 	public int totalDeApostas() {
 		return this.apostas.size();
 	}
 	
+	/**
+	 * Retorna o valor total das apostas que
+	 * foram feitas no cenario.
+	 * 
+	 * @return valor total das apostas no cenario
+	 */
 	public int valorTotalDeApostas() {
 		int totalDeApostas = this.totalDeApostas(), somatorio = 0;
 		
@@ -70,6 +99,12 @@ public class Cenario {
 		return listagem;
 	}
 	
+	/**
+	 * Método utilizado para fechar as apostas do
+	 * cenário (o cenário é encerrado).
+	 * 
+	 * @param ocorreu status final do cenário (se o mesmo ocorreu ou não)
+	 */
 	public void fecharAposta(boolean ocorreu) {
 		if( this.encerrado ) return;
 		int totalDeApostas = this.totalDeApostas();

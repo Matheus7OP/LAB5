@@ -72,10 +72,24 @@ public class Sistema {
 		this.controleCenarios.cadastrarAposta(cenario, apostador, valor, previsao);
 	}
 	
+	/**
+	 * Retorna o valor total das apostas feitas em
+	 * um cenário.
+	 * 
+	 * @param cenario id do cenário a ser verificado
+	 * @return valor total das apostas no cenário
+	 */
 	public int valorTotalDeApostas(int cenario) {
 		return this.controleCenarios.valorTotalDeApostas(cenario);
 	}
 	
+	/**
+	 * Retorna a quantidade de apostas feitas em
+	 * um cenário.
+	 * 
+	 * @param cenario o id do cenário a ser verificado
+	 * @return quantidade de apostas feitas no cenário
+	 */
 	public int totalDeApostas(int cenario) {
 		return this.controleCenarios.valorTotalDeApostas(cenario);
 	}
@@ -91,6 +105,13 @@ public class Sistema {
 		return this.controleCenarios.exibeApostas(cenario);
 	}
 	
+	/**
+	 * Retorna a quantidade de dinheiro (que pertence ao sistema)
+	 * no caixa do cenário.
+	 * 
+	 * @param cenario id do cenário a ser verificado
+	 * @return a quantidade de dinheiro no caixa do cenário
+	 */
 	public int getCaixaCenario(int cenario) {
 		int caixa = this.controleCenarios.getCaixa(cenario);
 		
@@ -100,11 +121,25 @@ public class Sistema {
 		return ( (int)valorReal );
 	}
 	
+	/**
+	 * Retorna a quantidade de dinheiro (que pertence aos vencedores)
+	 * presente no caixa do cenário.
+	 * 
+	 * @param cenario id do cenário a ser verificado
+	 * @return a quantidade de dinheiro pertencente aos vencedores do cenário
+	 */
 	public int getTotalRateioCenario(int cenario) {
 		int caixa = this.controleCenarios.getCaixa(cenario);
 		return ( caixa - this.getCaixaCenario(cenario) );
 	}
 	
+	/**
+	 * Método utilizado para fechar as apostas de determinado
+	 * cenário (o cenário é encerrado).
+	 * 
+	 * @param cenario id do cenário a ser verificado
+	 * @param ocorreu status final do cenário (se o mesmo ocorreu ou não)
+	 */
 	public void fecharAposta(int cenario, boolean ocorreu) {
 		this.controleCenarios.fecharAposta(cenario, ocorreu);
 	}
