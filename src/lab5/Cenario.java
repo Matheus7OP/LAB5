@@ -15,7 +15,16 @@ public class Cenario {
 	 * @param descricao a descricao do cenario
 	 * @param id o id do cenario
 	 */
-	public Cenario(String descricao, int id) {
+	public Cenario(String desc, int id) {
+		if(desc == null) {
+			throw new NullPointerException("Parâmetro nulo!");
+		}
+		
+		String descricao = desc.trim();
+		if(descricao.equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de cenario: Descricao nao pode ser vazia");
+		}
+		
 		this.descricao = descricao;
 		this.finalizado = false;
 		this.id = id;
@@ -106,7 +115,9 @@ public class Cenario {
 	 * @param ocorreu status final do cenário (se o mesmo ocorreu ou não)
 	 */
 	public void fecharAposta(boolean ocorreu) {
-		if( this.encerrado ) return;
+		if( this.encerrado ) {
+			throw new IllegalArgumentException("Erro ao fechar aposta: Cenario ja esta fechado");
+		}
 		int totalDeApostas = this.totalDeApostas();
 		
 		for(int i = 0; i < totalDeApostas; i++) {
@@ -117,6 +128,8 @@ public class Cenario {
 				this.caixa += this.apostas.get(i).getValor();
 			}
 		}
+		
+		this.encerrado = true;
 	}
 	
 	@Override
@@ -127,7 +140,7 @@ public class Cenario {
 			representacao += "Finalizado (ocorreu)";
 		}
 		else {
-			representacao += "Não finalizado";
+			representacao += "Nao finalizado";
 		}
 		
 		return representacao;

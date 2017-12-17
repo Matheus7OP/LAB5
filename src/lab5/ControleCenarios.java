@@ -33,6 +33,14 @@ public class ControleCenarios {
 	 * @return representação do cenário com o id especificado 
 	 */
 	public String exibirCenario(int cenario) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro na consulta de cenario: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro na consulta de cenario: Cenario nao cadastrado");
+		}
+		
 		return this.conjuntoCenarios.get(cenario - 1).toString();
 	}
 	
@@ -55,6 +63,14 @@ public class ControleCenarios {
 	 * @param previsao resultado esperado pelo apostador
 	 */
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+		
 		this.conjuntoCenarios.get(cenario - 1).cadastrarAposta(apostador, valor, previsao);
 	}
 	
@@ -66,6 +82,14 @@ public class ControleCenarios {
 	 * @return valor total das apostas no cenário
 	 */
 	public int valorTotalDeApostas(int cenario) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro na consulta do valor total de apostas: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro na consulta do valor total de apostas: Cenario nao cadastrado");
+		}
+		
 		return this.conjuntoCenarios.get(cenario - 1).valorTotalDeApostas();
 	}
 	
@@ -77,6 +101,14 @@ public class ControleCenarios {
 	 * @return quantidade de apostas feitas no cenário
 	 */
 	public int totalDeApostas(int cenario) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro na consulta do total de apostas: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro na consulta do total de apostas: Cenario nao cadastrado");
+		}
+		
 		return this.conjuntoCenarios.get(cenario - 1).totalDeApostas();
 	}
 	
@@ -99,6 +131,14 @@ public class ControleCenarios {
 	 * @param ocorreu status final do cenário (se o mesmo ocorreu ou não)
 	 */
 	public void fecharAposta(int cenario, boolean ocorreu) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro ao fechar aposta: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro ao fechar aposta: Cenario nao cadastrado");
+		}
+		
 		this.conjuntoCenarios.get(cenario - 1).fecharAposta(ocorreu);
 	}
 	

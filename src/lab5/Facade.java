@@ -1,5 +1,7 @@
 package lab5;
 
+import easyaccept.EasyAccept;
+
 /**
  * Classe que abstrai o sistema para facilitar
  * o uso das classes abstraídas.
@@ -8,6 +10,18 @@ package lab5;
  */
 public class Facade {
 	private Sistema sistema;
+	
+	/**
+	 * Função adicionada para fazer uso do EasyAccept,
+	 * visando rodar testes de aceitação no código.
+	 * 
+	 * @param args argumentos para inicialização do EasyAccept
+	 */
+	public static void main(String[] args) {
+		args = new String[] {"lab5.Facade", "acceptanceTest/us1_test.txt", "acceptanceTest/us2_test.txt", 
+		"acceptanceTest/us3_test.txt", "acceptanceTest/us4_test.txt"};
+		EasyAccept.main(args);
+	}
 	
 	/**
 	 * Método utilizado para inicializar o sistema.

@@ -10,7 +10,6 @@ expect "1 - O aluno Viktor Borgino vai pagar PLP - Nao finalizado" exibirCenario
 expect "2 - Hoje vai fazer -30 graus em Campina - Nao finalizado" exibirCenario cenario=2
 expect "3 - Todos os alunos comparecerao a aula de LP2 nessa terca - Nao finalizado" exibirCenario cenario=3
 
-
 # Testes com exception
 
 expectError "Erro no cadastro de cenario: Descricao nao pode ser vazia" cadastrarCenario descricao=""

@@ -12,9 +12,27 @@ public class Aposta {
 	 * @param valor o valor da aposta
 	 * @param previsao a previsao feita pelo apostador
 	 */
-	public Aposta(String apostador, int valor, String previsao) {
-		if( apostador == null || previsao == null ) {
+	public Aposta(String apostador2, int valor, String prev) {
+		if( apostador2 == null || prev == null ) {
 			throw new NullPointerException("Parâmetro nulo!");
+		}
+		
+		String apostador = apostador2.trim();
+		if(apostador.equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Apostador nao pode ser vazio ou nulo");
+		}
+		
+		if(valor <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Valor nao pode ser menor ou igual a zero");
+		}
+		
+		String previsao = prev.trim();
+		if(previsao.equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao nao pode ser vazia ou nula");
+		}
+		
+		if( !previsao.equals("VAI ACONTECER") && !previsao.equals("N VAI ACONTECER") ) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Previsao invalida");
 		}
 
 		this.apostador = apostador;

@@ -12,6 +12,13 @@ public class Sistema {
 	 * @param taxa a taxa que o sistema irá utilizar para retirar sua parte nas apostas
 	 */
 	public Sistema(int caixa, double taxa) {
+		if(caixa < 0) {
+			throw new IllegalArgumentException("Erro na inicializacao: Caixa nao pode ser inferior a 0");
+		}
+		if(taxa < 0.0) {
+			throw new IllegalArgumentException("Erro na inicializacao: Taxa nao pode ser inferior a 0");
+		}
+		
 		this.caixa = caixa;
 		this.taxa = taxa;
 		this.controleCenarios = new ControleCenarios();
@@ -91,7 +98,7 @@ public class Sistema {
 	 * @return quantidade de apostas feitas no cenário
 	 */
 	public int totalDeApostas(int cenario) {
-		return this.controleCenarios.valorTotalDeApostas(cenario);
+		return this.controleCenarios.totalDeApostas(cenario);
 	}
 	
 	/**
@@ -142,5 +149,6 @@ public class Sistema {
 	 */
 	public void fecharAposta(int cenario, boolean ocorreu) {
 		this.controleCenarios.fecharAposta(cenario, ocorreu);
+		this.caixa += this.getCaixaCenario(cenario);
 	}
 }
