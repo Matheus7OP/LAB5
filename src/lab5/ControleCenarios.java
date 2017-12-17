@@ -143,6 +143,17 @@ public class ControleCenarios {
 	}
 	
 	/**
+	 * Método utilizado para checar se determinado
+	 * cenário está encerrado ou não.
+	 * 
+	 * @param cenario o id do cenario
+	 * @return true, caso o cenario esteja encerrado
+	 */
+	public boolean cenarioEncerrado(int cenario) {
+		return this.conjuntoCenarios.get(cenario - 1).estaEncerrado();
+	}
+	
+	/**
 	 * Retorna a quantidade de dinheiro (em centavos)
 	 * presente no caixa do cenario.
 	 * 
@@ -150,6 +161,14 @@ public class ControleCenarios {
 	 * @return
 	 */
 	public int getCaixa(int cenario) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro na consulta do caixa do cenario: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro na consulta do caixa do cenario: Cenario nao cadastrado");
+		}
+		
 		return this.conjuntoCenarios.get(cenario - 1).getCaixa();
 	}
 	

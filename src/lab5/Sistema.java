@@ -1,5 +1,7 @@
 package lab5;
 
+import java.util.NoSuchElementException;
+
 public class Sistema {
 	private int caixa;
 	private double taxa;
@@ -122,6 +124,10 @@ public class Sistema {
 	public int getCaixaCenario(int cenario) {
 		int caixa = this.controleCenarios.getCaixa(cenario);
 		
+		if( !this.controleCenarios.cenarioEncerrado(cenario) ) {
+			throw new NoSuchElementException("Erro na consulta do caixa do cenario: Cenario ainda esta aberto");
+		}
+		
 		double valorReal = ( (double)caixa ) * this.taxa;
 		valorReal = Math.floor(valorReal);
 		
@@ -136,6 +142,18 @@ public class Sistema {
 	 * @return a quantidade de dinheiro pertencente aos vencedores do cenário
 	 */
 	public int getTotalRateioCenario(int cenario) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro na consulta do total de rateio do cenario: Cenario invalido");
+		}
+		
+		if(cenario > this.controleCenarios.cenariosCadastrados()) {
+			throw new IllegalArgumentException("Erro na consulta do total de rateio do cenario: Cenario nao cadastrado");
+		}
+		
+		if( !this.controleCenarios.cenarioEncerrado(cenario) ) {
+			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
+		}
+		
 		int caixa = this.controleCenarios.getCaixa(cenario);
 		return ( caixa - this.getCaixaCenario(cenario) );
 	}

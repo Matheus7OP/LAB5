@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Cenario {
 	private String descricao;
-	private boolean finalizado;
 	private int id, caixa;
 	private ArrayList<Aposta> apostas;
 	private boolean encerrado;
@@ -26,7 +25,6 @@ public class Cenario {
 		}
 		
 		this.descricao = descricao;
-		this.finalizado = false;
 		this.id = id;
 		this.apostas = new ArrayList<Aposta>();
 		this.encerrado = false;
@@ -43,12 +41,21 @@ public class Cenario {
 	}
 	
 	/**
+	 * Retorna se o cenario está encerrado.
+	 * 
+	 * @return true, caso o cenario esteja encerrado
+	 */
+	public boolean estaEncerrado() {
+		return this.encerrado;
+	}
+	
+	/**
 	 * Retorna a quantidade de dinheiro no 
 	 * caixa do cenario (em centavos).
 	 * 
 	 * @return a quantidade de dinheiro em caixa.
 	 */
-	public int getCaixa() {
+	public int getCaixa() {		
 		return this.caixa;
 	}
 	
@@ -136,7 +143,7 @@ public class Cenario {
 	public String toString() {
 		String representacao = this.id + " - " + this.descricao + " - ";
 		
-		if( this.finalizado ) {
+		if( this.encerrado ) {
 			representacao += "Finalizado (ocorreu)";
 		}
 		else {
