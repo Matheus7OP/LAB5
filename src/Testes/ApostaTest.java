@@ -1,5 +1,7 @@
 package Testes;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,5 +23,10 @@ public class ApostaTest {
 	@Test(expected=NullPointerException.class)
 	public void previsaoNullTest() {
 		Aposta aposta = new Aposta("Matheus", 123, null);
+	}
+	
+	@Test
+	public void toStringTest() {
+		assertEquals(this.apostaSimples.toString(), "Matheus Oliveira - R$ 7,77 - VAI ACONTECER");
 	}
 }

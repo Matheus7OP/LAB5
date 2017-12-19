@@ -61,10 +61,10 @@ public class Aposta {
 	
 	@Override
 	public String toString() {
-		String informacao = "";
+		String informacao;
 		double valorReal = ( (double)this.valor ) / 100.0;
 		
-		informacao += this.apostador + " - " + "R$ " + valorReal + " - " + previsao;
+		informacao = String.format("%s - R$ %.2f - %s", this.apostador, valorReal, previsao);
 		return informacao;
 	}
 }
