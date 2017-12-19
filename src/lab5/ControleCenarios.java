@@ -2,6 +2,12 @@ package lab5;
 
 import java.util.ArrayList;
 
+/**
+ * Classe Controller do conjunto de cenários
+ * que o sistema pode vir a armazenar.
+ * 
+ * @author Matheus Oliveira Pereira
+ */
 public class ControleCenarios {
 	private ArrayList<Cenario> conjuntoCenarios;
 	

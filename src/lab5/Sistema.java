@@ -2,6 +2,14 @@ package lab5;
 
 import java.util.NoSuchElementException;
 
+/**
+ * Classe que representa o sistema, em sua ideia
+ * mais geral. Tem como atributos a taxa retirada de apostas
+ * perdedoras (para ser depositado ao caixa do sistema) e o caixa
+ * do sistema.
+ * 
+ * @author Matheus Oliveira Pereira
+ */
 public class Sistema {
 	private int caixa;
 	private double taxa;

@@ -2,6 +2,12 @@ package lab5;
 
 import java.util.ArrayList;
 
+/**
+ * Classe que representa um cenário (que pode
+ * receber apostas) no sistema.
+ * 
+ * @author Matheus Oliveira Pereira
+ */
 public class Cenario {
 	private String descricao;
 	private int id, caixa;

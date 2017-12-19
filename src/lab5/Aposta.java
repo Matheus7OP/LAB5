@@ -1,5 +1,12 @@
 package lab5;
 
+/**
+ * Classe que representa as apostas no sistema.
+ * Tem como parâmetros o nome do apostador, o valor apostado
+ * e a previsão feita na hora de apostar.
+ * 
+ * @author Matheus Oliveira Pereira
+ */
 public class Aposta {
 	private String apostador;
 	private int valor;
