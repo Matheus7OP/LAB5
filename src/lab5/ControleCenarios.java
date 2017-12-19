@@ -163,8 +163,8 @@ public class ControleCenarios {
 	 * Retorna a quantidade de dinheiro (em centavos)
 	 * presente no caixa do cenario.
 	 * 
-	 * @param cenario
-	 * @return
+	 * @param cenario o id do cenario a ser verificado
+	 * @return quantidade de dinheiro no caixa do cenario
 	 */
 	public int getCaixa(int cenario) {
 		if(cenario <= 0) {

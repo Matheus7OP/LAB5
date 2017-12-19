@@ -15,9 +15,9 @@ public class Aposta {
 	/**
 	 * Construtor do objeto Aposta.
 	 * 
-	 * @param apostador o nome do apostador
+	 * @param apostador2 o nome do apostador
 	 * @param valor o valor da aposta
-	 * @param previsao a previsao feita pelo apostador
+	 * @param prev a previsao feita pelo apostador
 	 */
 	public Aposta(String apostador2, int valor, String prev) {
 		if( apostador2 == null || prev == null ) {

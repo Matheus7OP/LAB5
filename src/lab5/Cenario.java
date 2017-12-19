@@ -17,7 +17,7 @@ public class Cenario {
 	/**
 	 * Construtor do objeto Cenario.
 	 * 
-	 * @param descricao a descricao do cenario
+	 * @param desc a descricao do cenario
 	 * @param id o id do cenario
 	 */
 	public Cenario(String desc, int id) {
