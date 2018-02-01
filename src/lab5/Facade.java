@@ -54,6 +54,19 @@ public class Facade {
 		return this.sistema.cadastrarCenario(descricao);
 	}
 	
+	
+	/**
+	 * Método utilizado para cadastrar um novo
+	 * cenário com bônus no sistema.
+	 * 
+	 * @param descricao a descricao do cenário
+	 * @param bonus o valor dado como bonus no cenário
+	 * @return o id do cenário no sistema
+	 */
+	public int cadastrarCenario(String descricao, int bonus) {
+		return this.sistema.cadastrarCenario(descricao, bonus);
+	}
+	
 	/**
 	 * Retorna uma string que representa o cenário
 	 * com o id passado no parâmetro da função.

@@ -13,6 +13,7 @@ public class Cenario {
 	private int id, caixa;
 	private ArrayList<Aposta> apostas;
 	private boolean encerrado;
+	protected boolean temBonus;
 	
 	/**
 	 * Construtor do objeto Cenario.
@@ -35,6 +36,7 @@ public class Cenario {
 		this.apostas = new ArrayList<Aposta>();
 		this.encerrado = false;
 		this.caixa = 0;
+		this.temBonus = false;
 	}
 	
 	/**

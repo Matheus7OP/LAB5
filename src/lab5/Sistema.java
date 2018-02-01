@@ -1,4 +1,4 @@
-package lab5;
+	package lab5;
 
 import java.util.NoSuchElementException;
 
@@ -53,6 +53,18 @@ public class Sistema {
 	 */
 	public int cadastrarCenario(String descricao) {
 		return this.controleCenarios.cadastrarCenario(descricao);
+	}
+	
+	/**
+	 * Método utilizado para cadastrar um novo
+	 * cenário com bônus no sistema.
+	 * 
+	 * @param descricao a descricao do cenário
+	 * @param bonus o valor dado como bonus no cenário
+	 * @return o id do cenário no sistema
+	 */
+	public int cadastrarCenario(String descricao, int bonus) {
+		return this.controleCenarios.cadastrarCenario(descricao, bonus);
 	}
 	
 	/**
@@ -162,8 +174,20 @@ public class Sistema {
 			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
 		}
 		
-		int caixa = this.controleCenarios.getCaixa(cenario);
-		return ( caixa - this.getCaixaCenario(cenario) );
+		int caixa = this.controleCenarios.getCaixa(cenario), rateio = caixa - this.getCaixaCenario(cenario);
+		
+		if( this.controleCenarios.temBonus(cenario) ) {
+			int bonus = this.controleCenarios.getBonus(cenario);
+			
+			if(bonus > this.caixa) {
+				throw new IllegalArgumentException("O sistema não tem dinheiro suficiente em caixa para adicionar tal bônus!");
+			}
+			
+			this.caixa -= rateio;
+			rateio += bonus;
+		}
+		
+		return rateio;
 	}
 	
 	/**

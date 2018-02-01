@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import lab5.Cenario;
+import lab5.CenarioBonus;
 import lab5.ControleCenarios;
 
 public class ControleCenarioTest {
@@ -102,5 +103,26 @@ public class ControleCenarioTest {
 	public void exibirCenariosTest() {
 		this.controleSimples.cadastrarCenario("A equipe de Cláudio ficou no Top 15 da Maratona da SBC");
 		assertEquals(this.controleSimples.exibirCenarios(), "1 - A equipe de Cláudio ficou no Top 15 da Maratona da SBC - Nao finalizado" + System.lineSeparator());
+	}
+	
+	@Test
+	public void temBonusTest() {
+		this.controleSimples.cadastrarCenario("Pigmeu ganhará medalha de ouro na OBI 2018", 200);
+		this.controleSimples.cadastrarCenario("Pigmeu ganhará medalha de ouro na OBI 2019");
+		
+		assertTrue( this.controleSimples.temBonus(1) );
+		assertFalse( this.controleSimples.temBonus(2) );
+	}
+	
+	@Test
+	public void getBonusTest() {
+		this.controleSimples.cadastrarCenario("Pigmeu ganhará medalha de ouro na OBI 2018", 200);
+		assertEquals( this.controleSimples.getBonus(1), 200 );
+	}
+	
+	@Test (expected=IllegalArgumentException.class)
+	public void getBonusErrorTest() {
+		this.controleSimples.cadastrarCenario("Pigmeu ganhará medalha de ouro na OBI 2019");
+		this.controleSimples.getBonus(1);
 	}
 }

@@ -32,6 +32,20 @@ public class ControleCenarios {
 	}
 	
 	/**
+	 * Método utilizado para cadastrar um novo
+	 * cenário com bônus no sistema.
+	 * 
+	 * @param descricao a descricao do cenário
+	 * @param bonus o valor dado como bonus no cenário
+	 * @return o id do cenário no sistema
+	 */
+	public int cadastrarCenario(String descricao, int bonus) {
+		CenarioBonus cenario = new CenarioBonus(descricao, this.conjuntoCenarios.size() + 1, bonus);
+		this.conjuntoCenarios.add(cenario);
+		return cenario.getId();
+	}
+	
+	/**
 	 * Retorna uma string que representa o cenário
 	 * com o id passado no parâmetro da função.
 	 * 
@@ -176,6 +190,34 @@ public class ControleCenarios {
 		}
 		
 		return this.conjuntoCenarios.get(cenario - 1).getCaixa();
+	}
+	
+	
+	/**
+	 * Método utilizado para checar se existe
+	 * bonus no cenário em questão.
+	 * 
+	 * @param cenario o id do cenario
+	 * @return true, caso o cenario tenha bonus
+	 */
+	public boolean temBonus(int cenario) {
+		return this.conjuntoCenarios.get(cenario - 1).temBonus;
+	}
+	
+	/**
+	 * Método utilizado para recuperar o
+	 * bonus presente no cenarioBonus.
+	 * 
+	 * @param cenario o id do cenario
+	 * @return bonus armazenado no cenario
+	 */
+	public int getBonus(int cenario) {
+		if( !this.conjuntoCenarios.get(cenario - 1).temBonus ) {
+			throw new IllegalArgumentException("O cenário requisitado não é Cenário com Bônus!");
+		}
+		
+		CenarioBonus cenarioBonus = (CenarioBonus)this.conjuntoCenarios.get(cenario - 1);
+		return cenarioBonus.getBonus();
 	}
 	
 	/**
