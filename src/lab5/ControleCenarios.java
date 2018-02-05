@@ -95,6 +95,53 @@ public class ControleCenarios {
 	}
 	
 	/**
+	 * Método utilizado para cadastrar uma nova aposta
+	 * com seguro (por valor) ao sistema.
+	 * 
+	 * @param cenario id do cenario no qual a aposta será adicionada
+	 * @param apostador o nome do apostador
+	 * @param valor o valor a ser apostado
+	 * @param previsao resultado esperado pelo apostador
+	 * @param valorAssegurado valor assegurado na criação 
+	 * @param custo custo da criação
+	 * @return o id da aposta criada
+	 */
+	public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorAssegurado) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+		
+		return this.conjuntoCenarios.get(cenario - 1).cadastrarApostaSeguraValor(apostador, valor, previsao, valorAssegurado);
+	}
+	
+	/**
+	 * Método utilizado para cadastrar uma nova aposta
+	 * com seguro (por taxa) ao sistema.
+	 * 
+	 * @param cenario id do cenario no qual a aposta será adicionada
+	 * @param apostador o nome do apostador
+	 * @param valor o valor a ser apostado
+	 * @param previsao resultado esperado pelo apostador
+	 * @param valorAssegurado valor assegurado na criação 
+	 * @param custo custo da criação
+	 * @return o id da aposta criada
+	 */
+	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+		return this.conjuntoCenarios.get(cenario - 1).cadastrarApostaSeguraTaxa(apostador, valor, previsao, taxa);
+	}
+	
+	/**
 	 * Retorna o valor total das apostas feitas em
 	 * um cenário.
 	 * 
@@ -192,32 +239,15 @@ public class ControleCenarios {
 		return this.conjuntoCenarios.get(cenario - 1).getCaixa();
 	}
 	
-	
 	/**
-	 * Método utilizado para checar se existe
-	 * bonus no cenário em questão.
+	 * Retorna o valor que o sistema está
+	 * devendo aos seguros feitos em determinadas
+	 * apostas desse cenário.
 	 * 
-	 * @param cenario o id do cenario
-	 * @return true, caso o cenario tenha bonus
+	 * @return valor que o sistema deve pagar
 	 */
-	public boolean temBonus(int cenario) {
-		return this.conjuntoCenarios.get(cenario - 1).temBonus;
-	}
-	
-	/**
-	 * Método utilizado para recuperar o
-	 * bonus presente no cenarioBonus.
-	 * 
-	 * @param cenario o id do cenario
-	 * @return bonus armazenado no cenario
-	 */
-	public int getBonus(int cenario) {
-		if( !this.conjuntoCenarios.get(cenario - 1).temBonus ) {
-			throw new IllegalArgumentException("O cenário requisitado não é Cenário com Bônus!");
-		}
-		
-		CenarioBonus cenarioBonus = (CenarioBonus)this.conjuntoCenarios.get(cenario - 1);
-		return cenarioBonus.getBonus();
+	public int pagamentoSeguros(int cenario) {
+		return this.conjuntoCenarios.get(cenario - 1).getPagamentoSeguros();
 	}
 	
 	/**

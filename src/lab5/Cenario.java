@@ -10,10 +10,10 @@ import java.util.ArrayList;
  */
 public class Cenario {
 	private String descricao;
-	private int id, caixa;
+	private int id, apostasComSeguro, pagamentoSeguros;
 	private ArrayList<Aposta> apostas;
 	private boolean encerrado;
-	protected boolean temBonus;
+	protected int caixa;
 	
 	/**
 	 * Construtor do objeto Cenario.
@@ -36,7 +36,8 @@ public class Cenario {
 		this.apostas = new ArrayList<Aposta>();
 		this.encerrado = false;
 		this.caixa = 0;
-		this.temBonus = false;
+		this.apostasComSeguro = 0;
+		this.pagamentoSeguros = 0;
 	}
 	
 	/**
@@ -46,6 +47,17 @@ public class Cenario {
 	 */
 	public int getId() {
 		return this.id;
+	}
+	
+	/**
+	 * Retorna o valor que o sistema está
+	 * devendo aos seguros feitos em determinadas
+	 * apostas desse cenário.
+	 * 
+	 * @return valor que o sistema deve pagar
+	 */
+	public int getPagamentoSeguros() {
+		return this.pagamentoSeguros;
 	}
 	
 	/**
@@ -78,6 +90,48 @@ public class Cenario {
 	public void cadastrarAposta(String apostador, int valor, String previsao) {
 		Aposta aposta = new Aposta(apostador, valor, previsao);
 		this.apostas.add(aposta);
+	}
+	
+	/**
+	 * Método utilizado para cadastrar uma nova aposta
+	 * com seguro (por valor) ao sistema.
+	 * 
+	 * @param cenario id do cenario no qual a aposta será adicionada
+	 * @param apostador o nome do apostador
+	 * @param valor o valor a ser apostado
+	 * @param previsao resultado esperado pelo apostador
+	 * @param valorAssegurado valor assegurado na criação 
+	 * @param custo custo da criação
+	 * @return o id da aposta criada
+	 */
+	public int cadastrarApostaSeguraValor(String apostador, int valor, String previsao, int valorAssegurado) {
+		this.apostasComSeguro += 1;
+		
+		Aposta apostaSegura = new ApostaSegura(apostador, valor, previsao, valorAssegurado, this.apostasComSeguro);
+		this.apostas.add(apostaSegura);
+		
+		return (this.apostasComSeguro);
+	}
+	
+	/**
+	 * Método utilizado para cadastrar uma nova aposta
+	 * com seguro (por taxa) ao sistema.
+	 * 
+	 * @param cenario id do cenario no qual a aposta será adicionada
+	 * @param apostador o nome do apostador
+	 * @param valor o valor a ser apostado
+	 * @param previsao resultado esperado pelo apostador
+	 * @param valorAssegurado valor assegurado na criação 
+	 * @param custo custo da criação
+	 * @return o id da aposta criada
+	 */
+	public int cadastrarApostaSeguraTaxa(String apostador, int valor, String previsao, double taxa) {
+		this.apostasComSeguro += 1;
+		
+		Aposta apostaSegura = new ApostaSegura(apostador, valor, previsao, taxa, this.apostasComSeguro);
+		this.apostas.add(apostaSegura);
+		
+		return (this.apostasComSeguro);
 	}
 	
 	/**
@@ -138,9 +192,11 @@ public class Cenario {
 		for(int i = 0; i < totalDeApostas; i++) {
 			if( !ocorreu && this.apostas.get(i).getPrevisao().equals("VAI ACONTECER") ) {
 				this.caixa += this.apostas.get(i).getValor();
+				this.pagamentoSeguros += this.apostas.get(i).getPagamentoSeguro();
 			}
 			if( ocorreu && this.apostas.get(i).getPrevisao().equals("N VAI ACONTECER") ) {
 				this.caixa += this.apostas.get(i).getValor();
+				this.pagamentoSeguros += this.apostas.get(i).getPagamentoSeguro();
 			}
 		}
 		

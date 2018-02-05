@@ -64,6 +64,10 @@ public class Sistema {
 	 * @return o id do cenário no sistema
 	 */
 	public int cadastrarCenario(String descricao, int bonus) {
+		if( bonus > this.caixa ) {
+			throw new IllegalArgumentException("O sistema não tem dinheiro suficiente em caixa para adicionar tal bônus!");
+		}
+		
 		return this.controleCenarios.cadastrarCenario(descricao, bonus);
 	}
 	
@@ -99,6 +103,48 @@ public class Sistema {
 	 */
 	public void cadastrarAposta(int cenario, String apostador, int valor, String previsao) {
 		this.controleCenarios.cadastrarAposta(cenario, apostador, valor, previsao);
+	}
+	
+	/**
+	 * Método utilizado para cadastrar uma nova aposta
+	 * com seguro (por valor) ao sistema.
+	 * 
+	 * @param cenario id do cenario no qual a aposta será adicionada
+	 * @param apostador o nome do apostador
+	 * @param valor o valor a ser apostado
+	 * @param previsao resultado esperado pelo apostador
+	 * @param valorAssegurado valor assegurado na criação 
+	 * @param custo custo da criação
+	 * @return o id da aposta criada
+	 */
+	public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorAssegurado, int custo) {
+		if( custo < 0 ) {
+			throw new IllegalArgumentException("O custo para criação da aposta não pode ser negativo!");
+		}
+		
+		this.caixa += custo;
+		return this.controleCenarios.cadastrarApostaSeguraValor(cenario, apostador, valor, previsao, valorAssegurado);
+	}
+	
+	/**
+	 * Método utilizado para cadastrar uma nova aposta
+	 * com seguro (por taxa) ao sistema.
+	 * 
+	 * @param cenario id do cenario no qual a aposta será adicionada
+	 * @param apostador o nome do apostador
+	 * @param valor o valor a ser apostado
+	 * @param previsao resultado esperado pelo apostador
+	 * @param valorAssegurado valor assegurado na criação 
+	 * @param custo custo da criação
+	 * @return o id da aposta criada
+	 */
+	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
+		if( custo < 0 ) {
+			throw new IllegalArgumentException("O custo para criação da aposta não pode ser negativo!");
+		}
+		
+		this.caixa += custo;
+		return this.controleCenarios.cadastrarApostaSeguraTaxa(cenario, apostador, valor, previsao, taxa);
 	}
 	
 	/**
@@ -174,20 +220,8 @@ public class Sistema {
 			throw new NoSuchElementException("Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
 		}
 		
-		int caixa = this.controleCenarios.getCaixa(cenario), rateio = caixa - this.getCaixaCenario(cenario);
-		
-		if( this.controleCenarios.temBonus(cenario) ) {
-			int bonus = this.controleCenarios.getBonus(cenario);
-			
-			if(bonus > this.caixa) {
-				throw new IllegalArgumentException("O sistema não tem dinheiro suficiente em caixa para adicionar tal bônus!");
-			}
-			
-			this.caixa -= rateio;
-			rateio += bonus;
-		}
-		
-		return rateio;
+		int totalArrecadado = this.controleCenarios.getCaixa(cenario);
+		return ( totalArrecadado - this.getCaixaCenario(cenario) );
 	}
 	
 	/**
@@ -199,6 +233,8 @@ public class Sistema {
 	 */
 	public void fecharAposta(int cenario, boolean ocorreu) {
 		this.controleCenarios.fecharAposta(cenario, ocorreu);
+		
 		this.caixa += this.getCaixaCenario(cenario);
+		this.caixa -= this.controleCenarios.pagamentoSeguros(cenario);
 	}
 }

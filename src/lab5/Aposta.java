@@ -11,6 +11,7 @@ public class Aposta {
 	private String apostador;
 	private int valor;
 	private String previsao;
+	protected int pagamentoSeguro;
 	
 	/**
 	 * Construtor do objeto Aposta.
@@ -45,6 +46,7 @@ public class Aposta {
 		this.apostador = apostador;
 		this.valor = valor;
 		this.previsao = previsao;
+		this.pagamentoSeguro = 0;
 	}
 	
 	/**
@@ -54,6 +56,16 @@ public class Aposta {
 	 */
 	public int getValor() {
 		return this.valor;
+	}
+	
+	/**
+	 * Retorna o valor necessário para o
+	 * sistema pagar o seguro da aposta
+	 * 
+	 * @return valor devido pelo sistema
+	 */
+	public int getPagamentoSeguro() {
+		return this.pagamentoSeguro;
 	}
 	
 	/**

@@ -102,6 +102,38 @@ public class Facade {
 	}
 	
 	/**
+	 * Método utilizado para cadastrar uma nova aposta
+	 * com seguro (por valor) ao sistema.
+	 * 
+	 * @param cenario id do cenario no qual a aposta será adicionada
+	 * @param apostador o nome do apostador
+	 * @param valor o valor a ser apostado
+	 * @param previsao resultado esperado pelo apostador
+	 * @param valorAssegurado valor assegurado na criação 
+	 * @param custo custo da criação
+	 * @return o id da aposta criada
+	 */
+	public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorAssegurado, int custo) {
+		return this.sistema.cadastrarApostaSeguraValor(cenario, apostador, valor, previsao, valorAssegurado, custo);
+	}
+	
+	/**
+	 * Método utilizado para cadastrar uma nova aposta
+	 * com seguro (por taxa) ao sistema.
+	 * 
+	 * @param cenario id do cenario no qual a aposta será adicionada
+	 * @param apostador o nome do apostador
+	 * @param valor o valor a ser apostado
+	 * @param previsao resultado esperado pelo apostador
+	 * @param valorAssegurado valor assegurado na criação 
+	 * @param custo custo da criação
+	 * @return o id da aposta criada
+	 */
+	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa, int custo) {
+		return this.sistema.cadastrarApostaSeguraTaxa(cenario, apostador, valor, previsao, taxa, custo);
+	}
+	
+	/**
 	 * Retorna o valor total das apostas feitas em
 	 * um cenário.
 	 * 
@@ -166,4 +198,7 @@ public class Facade {
 	public int getTotalRateioCenario(int cenario) {
 		return this.sistema.getTotalRateioCenario(cenario);
 	}
+
+	//int alterarSeguroValor(int cenario, int apostaAssegurada, int valor)
+	//int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa)
 }

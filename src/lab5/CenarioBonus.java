@@ -23,7 +23,7 @@ public class CenarioBonus extends Cenario {
 			throw new IllegalArgumentException("O valor do bônus não pode ser negativo");
 		}
 		
-		this.temBonus = true;
+		this.caixa = bonus;
 		this.bonus = bonus;
 	}
 	

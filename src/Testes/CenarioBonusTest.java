@@ -19,9 +19,4 @@ public class CenarioBonusTest {
 	public void toStringTest() {
 		assertEquals( this.cenarioSimples.toString(), "1 - Pigmeu ganhará medalha de ouro na OBI 2018 - Nao finalizado - 200" );
 	}
-	
-	@Test (expected=IllegalArgumentException.class)
-	public void bonusNegativoTest() {
-		CenarioBonus cenario = new CenarioBonus("Bonus negativo", 2, -7);
-	}
 }
