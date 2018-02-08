@@ -7,8 +7,6 @@ package lab5;
  * @author Matheus Oliveira Pereira
  */
 public class CenarioBonus extends Cenario {
-	private int bonus;
-	
 	/**
 	 * Construtor do objeto CenarioBonus.
 	 * 
@@ -23,22 +21,16 @@ public class CenarioBonus extends Cenario {
 			throw new IllegalArgumentException("O valor do bônus não pode ser negativo");
 		}
 		
-		this.caixa = bonus;
 		this.bonus = bonus;
-	}
-	
-	/**
-	 * Retorna o bônus do cenário.
-	 * 
-	 * @return o bonus do cenário
-	 */
-	public int getBonus() {
-		return this.bonus;
 	}
 	
 	@Override
 	public String toString() {
-		String info = super.toString() + " - " + this.bonus;
+		String info = super.toString();
+
+		double valorReal = ((double) this.bonus) / 100.0;
+		
+		info += String.format(" - R$ %.2f", valorReal);
 		return info;
 	}
 }

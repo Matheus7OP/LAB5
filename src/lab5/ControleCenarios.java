@@ -142,6 +142,34 @@ public class ControleCenarios {
 	}
 	
 	/**
+	 * Altera o tipo do seguro feito, de seguro por valor
+	 * para seguro por taxa, caso o cenário
+	 * ainda não tenha sido encerrado.
+	 * 
+	 * @param cenario o id do cenario no sistema
+	 * @param apostaAssegurada o id da aposta no cenario
+	 * @param valor o valor a ser assegurado
+	 * @return o novo valor a ser assegurado
+	 */
+	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		return this.conjuntoCenarios.get(cenario - 1).alterarSeguroValor(apostaAssegurada, valor);
+	}
+	
+	/**
+	 * Altera o tipo do seguro feito, de seguro por taxa
+	 * para seguro por valor, caso o cenário
+	 * ainda não tenha sido encerrado.
+	 * 
+	 * @param cenario o id do cenario no sistema
+	 * @param apostaAssegurada o id da aposta no cenario
+	 * @param taxa a nova taxa a ser assegurada
+	 * @return o novo valor a ser assegurado
+	 */
+	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		return this.conjuntoCenarios.get(cenario - 1).alterarSeguroTaxa(apostaAssegurada, taxa);
+	}
+	
+	/**
 	 * Retorna o valor total das apostas feitas em
 	 * um cenário.
 	 * 
@@ -237,6 +265,18 @@ public class ControleCenarios {
 		}
 		
 		return this.conjuntoCenarios.get(cenario - 1).getCaixa();
+	}
+	
+	public int getBonus(int cenario) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro na consulta do caixa do cenario: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro na consulta do caixa do cenario: Cenario nao cadastrado");
+		}
+		
+		return this.conjuntoCenarios.get(cenario - 1).getBonus();
 	}
 	
 	/**

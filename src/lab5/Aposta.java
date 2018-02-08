@@ -11,7 +11,7 @@ public class Aposta {
 	private String apostador;
 	private int valor;
 	private String previsao;
-	protected int pagamentoSeguro;
+	protected int id, tipoAposta, pagamentoSeguro;
 	
 	/**
 	 * Construtor do objeto Aposta.
@@ -47,6 +47,46 @@ public class Aposta {
 		this.valor = valor;
 		this.previsao = previsao;
 		this.pagamentoSeguro = 0;
+		this.id = 0;
+		this.tipoAposta = 0;
+	}
+	
+	/**
+	 * Método utilizado para alterar o tipo
+	 * de uma aposta, caso ela seja do tipo por
+	 * taxa.
+	 * 
+	 * @param valor o novo valor a ser assegurado
+	 */
+	public int alterarParaSeguroValor(int valor) {
+		if(this.tipoAposta == 1) {
+			throw new IllegalArgumentException("A aposta atual já é do tipo por valor.");
+		}
+		
+		this.tipoAposta = 1;
+		this.pagamentoSeguro = valor;
+		
+		return (this.pagamentoSeguro);
+	}
+	
+	/**
+	 * Método utilizado para alterar o tipo
+	 * de uma aposta, caso ela seja do tipo por
+	 * valor.
+	 * 
+	 * @param taxa a taxa a ser assegurada
+	 */
+	public int alterarParaSeguroTaxa(double taxa) {
+		if(this.tipoAposta == 2) {
+			throw new IllegalArgumentException("A aposta atual já é do tipo por taxa.");
+		}
+		
+		this.tipoAposta = 2;
+		
+		double novoValor = ((double) this.pagamentoSeguro) * taxa;
+		this.pagamentoSeguro = ((int) novoValor);
+		
+		return (this.pagamentoSeguro);
 	}
 	
 	/**
@@ -59,12 +99,33 @@ public class Aposta {
 	}
 	
 	/**
+	 * Retorna o id da Aposta.
+	 * 
+	 * @return o id da aposta
+	 */
+	public int getId() {
+		return this.id;
+	}
+	
+	/**
+	 * Retorna o tipo da aposta:
+	 * - 0, caso seja uma aposta comum;
+	 * - 1, caso seja uma aposta com seguro por valor;
+	 * - 2, caso seja uma aposta com seguro por taxa.
+	 * 
+	 * @return o tipo da aposta
+	 */
+	public int getTipoAposta() {
+		return this.tipoAposta;
+	}
+	
+	/**
 	 * Retorna o valor necessário para o
 	 * sistema pagar o seguro da aposta
 	 * 
 	 * @return valor devido pelo sistema
 	 */
-	public int getPagamentoSeguro() {
+	public double getPagamentoSeguro() {
 		return this.pagamentoSeguro;
 	}
 	

@@ -19,7 +19,7 @@ public class Facade {
 	 */
 	public static void main(String[] args) {
 		args = new String[] {"lab5.Facade", "acceptanceTest/us1_test.txt", "acceptanceTest/us2_test.txt", 
-		"acceptanceTest/us3_test.txt", "acceptanceTest/us4_test.txt"};
+		"acceptanceTest/us3_test.txt", "acceptanceTest/us4_test.txt", "acceptanceTest/us5_test.txt", "acceptanceTest/us6_test.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -134,6 +134,34 @@ public class Facade {
 	}
 	
 	/**
+	 * Altera o tipo do seguro feito, de seguro por valor
+	 * para seguro por taxa, caso o cenário
+	 * ainda não tenha sido encerrado.
+	 * 
+	 * @param cenario o id do cenario no sistema
+	 * @param apostaAssegurada o id da aposta no cenario
+	 * @param valor o valor a ser assegurado
+	 * @return o novo valor a ser assegurado
+	 */
+	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		return this.sistema.alterarSeguroValor(cenario, apostaAssegurada, valor);
+	}
+	
+	/**
+	 * Altera o tipo do seguro feito, de seguro por taxa
+	 * para seguro por valor, caso o cenário
+	 * ainda não tenha sido encerrado.
+	 * 
+	 * @param cenario o id do cenario no sistema
+	 * @param apostaAssegurada o id da aposta no cenario
+	 * @param taxa a nova taxa a ser assegurada
+	 * @return o novo valor a ser assegurado
+	 */
+	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		return this.sistema.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
+	}
+	
+	/**
 	 * Retorna o valor total das apostas feitas em
 	 * um cenário.
 	 * 
@@ -199,6 +227,5 @@ public class Facade {
 		return this.sistema.getTotalRateioCenario(cenario);
 	}
 
-	//int alterarSeguroValor(int cenario, int apostaAssegurada, int valor)
 	//int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa)
 }

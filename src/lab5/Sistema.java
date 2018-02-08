@@ -148,6 +148,34 @@ public class Sistema {
 	}
 	
 	/**
+	 * Altera o tipo do seguro feito, de seguro por valor
+	 * para seguro por taxa, caso o cenário
+	 * ainda não tenha sido encerrado.
+	 * 
+	 * @param cenario o id do cenario no sistema
+	 * @param apostaAssegurada o id da aposta no cenario
+	 * @param valor o valor a ser assegurado
+	 * @return o novo valor a ser assegurado
+	 */
+	public int alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		return this.controleCenarios.alterarSeguroValor(cenario, apostaAssegurada, valor);
+	}
+	
+	/**
+	 * Altera o tipo do seguro feito, de seguro por taxa
+	 * para seguro por valor, caso o cenário
+	 * ainda não tenha sido encerrado.
+	 * 
+	 * @param cenario o id do cenario no sistema
+	 * @param apostaAssegurada o id da aposta no cenario
+	 * @param taxa a nova taxa a ser assegurada
+	 * @return o novo valor a ser assegurado
+	 */
+	public int alterarSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		return this.controleCenarios.alterarSeguroTaxa(cenario, apostaAssegurada, taxa);
+	}
+	
+	/**
 	 * Retorna o valor total das apostas feitas em
 	 * um cenário.
 	 * 
@@ -221,6 +249,8 @@ public class Sistema {
 		}
 		
 		int totalArrecadado = this.controleCenarios.getCaixa(cenario);
+		totalArrecadado += this.controleCenarios.getBonus(cenario);
+		
 		return ( totalArrecadado - this.getCaixaCenario(cenario) );
 	}
 	
@@ -235,6 +265,13 @@ public class Sistema {
 		this.controleCenarios.fecharAposta(cenario, ocorreu);
 		
 		this.caixa += this.getCaixaCenario(cenario);
-		this.caixa -= this.controleCenarios.pagamentoSeguros(cenario);
+		
+		int pagamentoSeguros = this.controleCenarios.pagamentoSeguros(cenario);
+		
+		if(pagamentoSeguros > this.caixa) {
+			throw new IllegalArgumentException("O caixa não tem dinheiro suficiente para pagar os seguros!");
+		}
+		
+		this.caixa -= pagamentoSeguros;
 	}
 }

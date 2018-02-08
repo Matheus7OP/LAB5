@@ -13,7 +13,7 @@ public class Cenario {
 	private int id, apostasComSeguro, pagamentoSeguros;
 	private ArrayList<Aposta> apostas;
 	private boolean encerrado;
-	protected int caixa;
+	protected int caixa, bonus;
 	
 	/**
 	 * Construtor do objeto Cenario.
@@ -38,6 +38,7 @@ public class Cenario {
 		this.caixa = 0;
 		this.apostasComSeguro = 0;
 		this.pagamentoSeguros = 0;
+		this.bonus = 0;
 	}
 	
 	/**
@@ -77,6 +78,15 @@ public class Cenario {
 	 */
 	public int getCaixa() {		
 		return this.caixa;
+	}
+	
+	/**
+	 * Retorna o bônus do cenário.
+	 * 
+	 * @return o bonus do cenário
+	 */
+	public int getBonus() {
+		return this.bonus;
 	}
 	
 	/**
@@ -132,6 +142,54 @@ public class Cenario {
 		this.apostas.add(apostaSegura);
 		
 		return (this.apostasComSeguro);
+	}
+	
+	/**
+	 * Altera o tipo do seguro feito, de seguro por valor
+	 * para seguro por taxa, caso o cenário
+	 * ainda não tenha sido encerrado.
+	 * 
+	 * @param cenario o id do cenario no sistema
+	 * @param apostaAssegurada o id da aposta no cenario
+	 * @param valor o valor a ser assegurado
+	 * @return o novo valor a ser assegurado
+	 */
+	public int alterarSeguroValor(int apostaAssegurada, int valor) {
+		int totalDeApostas = this.totalDeApostas();
+		
+		for(int i = 0; i < totalDeApostas; i++) {
+			if( this.apostas.get(i).getId() == apostaAssegurada ) {
+				if( this.apostas.get(i).getTipoAposta() == 2 ) {
+					return this.apostas.get(i).alterarParaSeguroValor(valor);
+				}
+			}
+		}
+		
+		throw new IllegalArgumentException("O id indicado não existe.");
+	}
+	
+	/**
+	 * Altera o tipo do seguro feito, de seguro por taxa
+	 * para seguro por valor, caso o cenário
+	 * ainda não tenha sido encerrado.
+	 * 
+	 * @param cenario o id do cenario no sistema
+	 * @param apostaAssegurada o id da aposta no cenario
+	 * @param taxa a nova taxa a ser assegurada
+	 * @return o novo valor a ser assegurado
+	 */
+	public int alterarSeguroTaxa(int apostaAssegurada, double taxa) {
+		int totalDeApostas = this.totalDeApostas();
+		
+		for(int i = 0; i < totalDeApostas; i++) {
+			if( this.apostas.get(i).getId() == apostaAssegurada ) {
+				if( this.apostas.get(i).getTipoAposta() == 1 ) {
+					return this.apostas.get(i).alterarParaSeguroTaxa(taxa);
+				}
+			}
+		}
+		
+		throw new IllegalArgumentException("O id indicado não existe.");
 	}
 	
 	/**
