@@ -68,6 +68,7 @@ public class Sistema {
 			throw new IllegalArgumentException("O sistema não tem dinheiro suficiente em caixa para adicionar tal bônus!");
 		}
 		
+		this.caixa -= bonus;
 		return this.controleCenarios.cadastrarCenario(descricao, bonus);
 	}
 	
@@ -265,7 +266,6 @@ public class Sistema {
 		this.controleCenarios.fecharAposta(cenario, ocorreu);
 		
 		this.caixa += this.getCaixaCenario(cenario);
-		
 		int pagamentoSeguros = this.controleCenarios.pagamentoSeguros(cenario);
 		
 		if(pagamentoSeguros > this.caixa) {

@@ -41,8 +41,9 @@ public class ApostaSegura extends Aposta {
 		}
 		
 		double pagamento = ( (double)valor ) * taxa;
+		pagamento = Math.floor(pagamento);
 		
-		this.pagamentoSeguro = ( (int)Math.floor(pagamento) );
+		this.pagamentoSeguro = ( (int)pagamento );
 		this.id = id;
 		this.tipoAposta = 2;
 	}

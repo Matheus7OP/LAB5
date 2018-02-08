@@ -17,8 +17,8 @@ public class CenarioBonus extends Cenario {
 	public CenarioBonus(String descricao, int id, int bonus) {
 		super(descricao, id);
 		
-		if(bonus < 0) {
-			throw new IllegalArgumentException("O valor do bônus não pode ser negativo");
+		if(bonus <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de cenario: Bonus invalido");
 		}
 		
 		this.bonus = bonus;
@@ -29,8 +29,8 @@ public class CenarioBonus extends Cenario {
 		String info = super.toString();
 
 		double valorReal = ((double) this.bonus) / 100.0;
-		
 		info += String.format(" - R$ %.2f", valorReal);
+		
 		return info;
 	}
 }

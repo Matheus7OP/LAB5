@@ -84,8 +84,9 @@ public class Aposta {
 		this.tipoAposta = 2;
 		
 		double novoValor = ((double) this.pagamentoSeguro) * taxa;
-		this.pagamentoSeguro = ((int) novoValor);
+		novoValor = Math.floor(novoValor);
 		
+		this.pagamentoSeguro = ((int) novoValor);
 		return (this.pagamentoSeguro);
 	}
 	
