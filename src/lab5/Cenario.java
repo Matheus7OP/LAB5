@@ -106,15 +106,26 @@ public class Cenario {
 	 * Método utilizado para cadastrar uma nova aposta
 	 * com seguro (por valor) ao sistema.
 	 * 
-	 * @param cenario id do cenario no qual a aposta será adicionada
 	 * @param apostador o nome do apostador
 	 * @param valor o valor a ser apostado
 	 * @param previsao resultado esperado pelo apostador
 	 * @param valorAssegurado valor assegurado na criação 
-	 * @param custo custo da criação
 	 * @return o id da aposta criada
 	 */
 	public int cadastrarApostaSeguraValor(String apostador, int valor, String previsao, int valorAssegurado) {
+		if(apostador.trim().equals("") || apostador == null) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Apostador nao pode ser vazio ou nulo");
+		}
+		if(valor <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Valor nao pode ser menor ou igual a zero");
+		}
+		if(previsao.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao nao pode ser vazia ou nula");
+		}
+		if( !previsao.trim().equals("VAI ACONTECER") && !previsao.equals("N VAI ACONTECER") ) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Previsao invalida");
+		}
+		
 		this.apostasComSeguro += 1;
 		
 		Aposta apostaSegura = new ApostaSegura(apostador, valor, previsao, valorAssegurado, this.apostasComSeguro);
@@ -127,15 +138,26 @@ public class Cenario {
 	 * Método utilizado para cadastrar uma nova aposta
 	 * com seguro (por taxa) ao sistema.
 	 * 
-	 * @param cenario id do cenario no qual a aposta será adicionada
 	 * @param apostador o nome do apostador
 	 * @param valor o valor a ser apostado
 	 * @param previsao resultado esperado pelo apostador
-	 * @param valorAssegurado valor assegurado na criação 
-	 * @param custo custo da criação
+	 * @param taxa a taxa do valor a ser assegurada na criação 
 	 * @return o id da aposta criada
 	 */
 	public int cadastrarApostaSeguraTaxa(String apostador, int valor, String previsao, double taxa) {
+		if(apostador.trim().equals("") || apostador == null) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Apostador nao pode ser vazio ou nulo");
+		}
+		if(valor <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Valor nao pode ser menor ou igual a zero");
+		}
+		if(previsao.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao nao pode ser vazia ou nula");
+		}
+		if( !previsao.trim().equals("VAI ACONTECER") && !previsao.equals("N VAI ACONTECER") ) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Previsao invalida");
+		}
+		
 		this.apostasComSeguro += 1;
 		
 		Aposta apostaSegura = new ApostaSegura(apostador, valor, previsao, taxa, this.apostasComSeguro);
@@ -149,7 +171,6 @@ public class Cenario {
 	 * para seguro por taxa, caso o cenário
 	 * ainda não tenha sido encerrado.
 	 * 
-	 * @param cenario o id do cenario no sistema
 	 * @param apostaAssegurada o id da aposta no cenario
 	 * @param valor o valor a ser assegurado
 	 * @return o novo valor a ser assegurado
@@ -173,7 +194,6 @@ public class Cenario {
 	 * para seguro por valor, caso o cenário
 	 * ainda não tenha sido encerrado.
 	 * 
-	 * @param cenario o id do cenario no sistema
 	 * @param apostaAssegurada o id da aposta no cenario
 	 * @param taxa a nova taxa a ser assegurada
 	 * @return o novo valor a ser assegurado

@@ -103,16 +103,15 @@ public class ControleCenarios {
 	 * @param valor o valor a ser apostado
 	 * @param previsao resultado esperado pelo apostador
 	 * @param valorAssegurado valor assegurado na criação 
-	 * @param custo custo da criação
 	 * @return o id da aposta criada
 	 */
 	public int cadastrarApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorAssegurado) {
 		if(cenario <= 0) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
 		}
 		
 		if(cenario > this.conjuntoCenarios.size()) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
 		}
 		
 		return this.conjuntoCenarios.get(cenario - 1).cadastrarApostaSeguraValor(apostador, valor, previsao, valorAssegurado);
@@ -126,17 +125,16 @@ public class ControleCenarios {
 	 * @param apostador o nome do apostador
 	 * @param valor o valor a ser apostado
 	 * @param previsao resultado esperado pelo apostador
-	 * @param valorAssegurado valor assegurado na criação 
-	 * @param custo custo da criação
+	 * @param taxa a taxa do valor a ser assegurada na criação 
 	 * @return o id da aposta criada
 	 */
 	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxa) {
 		if(cenario <= 0) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
 		}
 		
 		if(cenario > this.conjuntoCenarios.size()) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
 		}
 		return this.conjuntoCenarios.get(cenario - 1).cadastrarApostaSeguraTaxa(apostador, valor, previsao, taxa);
 	}
@@ -284,6 +282,7 @@ public class ControleCenarios {
 	 * devendo aos seguros feitos em determinadas
 	 * apostas desse cenário.
 	 * 
+	 * @param cenario o id do cenario a ser verificado o pagamento de seguros
 	 * @return valor que o sistema deve pagar
 	 */
 	public int pagamentoSeguros(int cenario) {

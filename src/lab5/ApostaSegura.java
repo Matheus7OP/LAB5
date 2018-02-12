@@ -30,7 +30,7 @@ public class ApostaSegura extends Aposta {
 	 * @param apostador o nome do apostador
 	 * @param valor o valor a ser apostado
 	 * @param previsao previsao feita pelo apostador
-	 * @param valorAssegurado valor a ser devolvido caso o apostador perca
+	 * @param taxa a taxa do valor a ser devolvido caso o apostador perca
 	 * @param id o id da aposta
 	 */
 	public ApostaSegura(String apostador, int valor, String previsao, double taxa, int id) {
@@ -50,16 +50,19 @@ public class ApostaSegura extends Aposta {
 	
 	@Override
 	public String toString() {
-		String info = super.toString();
+		String info = super.toString(), valor;
 		
 		if(this.tipoAposta == 1) {
-			info += "- ASSEGURADA (VALOR) - R$ ";
+			info += " - ASSEGURADA (VALOR) - R$ ";
 		}
 		else {
-			info += "- ASSEGURADA (TAXA) - R$ ";
+			info += " - ASSEGURADA (TAXA) - R$ ";
 		}
 		
-		info += this.pagamentoSeguro;
+		double valorReal = ((double) this.pagamentoSeguro) / 100.0;
+		valor = String.format("%.2f", valorReal);
+		
+		info += valor;
 		return info;
 	}
 }

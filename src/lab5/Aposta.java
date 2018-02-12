@@ -9,9 +9,8 @@ package lab5;
  */
 public class Aposta {
 	private String apostador;
-	private int valor;
 	private String previsao;
-	protected int id, tipoAposta, pagamentoSeguro;
+	protected int id, tipoAposta, pagamentoSeguro, valor;
 	
 	/**
 	 * Construtor do objeto Aposta.
@@ -57,6 +56,7 @@ public class Aposta {
 	 * taxa.
 	 * 
 	 * @param valor o novo valor a ser assegurado
+	 * @return novo valor no pagamento do seguro
 	 */
 	public int alterarParaSeguroValor(int valor) {
 		if(this.tipoAposta == 1) {
@@ -75,6 +75,7 @@ public class Aposta {
 	 * valor.
 	 * 
 	 * @param taxa a taxa a ser assegurada
+	 * @return novo valor no pagamento do seguro
 	 */
 	public int alterarParaSeguroTaxa(double taxa) {
 		if(this.tipoAposta == 2) {
@@ -83,7 +84,7 @@ public class Aposta {
 		
 		this.tipoAposta = 2;
 		
-		double novoValor = ((double) this.pagamentoSeguro) * taxa;
+		double novoValor = ((double) this.valor) * taxa;
 		novoValor = Math.floor(novoValor);
 		
 		this.pagamentoSeguro = ((int) novoValor);

@@ -135,7 +135,7 @@ public class Sistema {
 	 * @param apostador o nome do apostador
 	 * @param valor o valor a ser apostado
 	 * @param previsao resultado esperado pelo apostador
-	 * @param valorAssegurado valor assegurado na criação 
+	 * @param taxa a taxa do valor a ser assegurada na criação 
 	 * @param custo custo da criação
 	 * @return o id da aposta criada
 	 */

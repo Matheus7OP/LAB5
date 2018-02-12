@@ -17,6 +17,6 @@ public class CenarioBonusTest {
 	
 	@Test
 	public void toStringTest() {
-		assertEquals( this.cenarioSimples.toString(), "1 - Pigmeu ganhará medalha de ouro na OBI 2018 - Nao finalizado - 200" );
+		assertEquals( this.cenarioSimples.toString(), "1 - Pigmeu ganhará medalha de ouro na OBI 2018 - Nao finalizado - R$ 2,00" );
 	}
 }
