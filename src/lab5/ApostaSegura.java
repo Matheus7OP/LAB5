@@ -1,5 +1,12 @@
 package lab5;
 
+/**
+ * Classe que representa uma aposta com
+ * seguro, que pode ser do tipo por valor
+ * ou por taxa.
+ * 
+ * @author Matheus Oliveira Pereira
+ */
 public class ApostaSegura extends Aposta {	
 	/**
 	 * Construtor do objeto ApostaSegura, quando
