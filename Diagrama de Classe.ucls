@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="lab5.Facade" project="LAB5_MATHEUS_OLIVEIRA_PEREIRA" 
     file="/LAB5_MATHEUS_OLIVEIRA_PEREIRA/src/lab5/Facade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="200" y="256"/>    
+    <position height="-1" width="-1" x="208" y="260"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="lab5.Sistema" project="LAB5_MATHEUS_OLIVEIRA_PEREIRA" 
     file="/LAB5_MATHEUS_OLIVEIRA_PEREIRA/src/lab5/Sistema.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="760" y="310"/>    
+    <position height="455" width="325" x="434" y="237"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="lab5.ControleCenarios" project="LAB5_MATHEUS_OLIVEIRA_PEREIRA" 
     file="/LAB5_MATHEUS_OLIVEIRA_PEREIRA/src/lab5/ControleCenarios.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="419" width="311" x="1075" y="347"/>    
+    <position height="491" width="311" x="907" y="329"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="lab5.Cenario" project="LAB5_MATHEUS_OLIVEIRA_PEREIRA" 
     file="/LAB5_MATHEUS_OLIVEIRA_PEREIRA/src/lab5/Cenario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="760" y="862"/>    
+    <position height="-1" width="-1" x="1476" y="724"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="lab5.CenarioBonus" project="LAB5_MATHEUS_OLIVEIRA_PEREIRA" 
     file="/LAB5_MATHEUS_OLIVEIRA_PEREIRA/src/lab5/CenarioBonus.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="95" width="159" x="283" y="771"/>    
+    <position height="95" width="159" x="1429" y="183"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="lab5.Aposta" project="LAB5_MATHEUS_OLIVEIRA_PEREIRA" 
     file="/LAB5_MATHEUS_OLIVEIRA_PEREIRA/src/lab5/Aposta.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="329" width="194" x="1027" y="860"/>    
+    <position height="329" width="194" x="1721" y="726"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="lab5.ApostaSegura" project="LAB5_MATHEUS_OLIVEIRA_PEREIRA" 
     file="/LAB5_MATHEUS_OLIVEIRA_PEREIRA/src/lab5/ApostaSegura.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="113" width="225" x="1292" y="988"/>    
+    <position height="113" width="225" x="1726" y="508"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -65,43 +65,51 @@
     </display>  
   </class>  
   <association id="8">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="9" name="controleCenarios"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="11">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="12" name="conjuntoCenarios"/>      
-      <multiplicity id="13" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="14">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="15" name="sistema"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
+      <attribute id="9" name="sistema"/>      
+      <multiplicity id="10" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="11">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="12" name="apostas"/>      
+      <multiplicity id="13" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="14">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="15" name="conjuntoCenarios"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <generalization id="17">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="18">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="19">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="20" name="apostas"/>      
-      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
+  <association id="18">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="19" name="controleCenarios"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="22">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="23" name="exibicao"/>      
+      <multiplicity id="24" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
