@@ -19,7 +19,8 @@ public class Facade {
 	 */
 	public static void main(String[] args) {
 		args = new String[] {"lab5.Facade", "acceptanceTest/us1_test.txt", "acceptanceTest/us2_test.txt", 
-		"acceptanceTest/us3_test.txt", "acceptanceTest/us4_test.txt", "acceptanceTest/us5_test.txt", "acceptanceTest/us6_test.txt"};
+		"acceptanceTest/us3_test.txt", "acceptanceTest/us4_test.txt", "acceptanceTest/us5_test.txt", "acceptanceTest/us6_test.txt", 
+		"acceptanceTest/us7_test.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -225,5 +226,26 @@ public class Facade {
 	 */
 	public int getTotalRateioCenario(int cenario) {
 		return this.sistema.getTotalRateioCenario(cenario);
+	}
+	
+	/**
+	 * Altera a ordem em que os cenários são
+	 * exibidos.
+	 * 
+	 * @param ordem o critério de ordenação que deve ser utilizado
+	 */
+	public void alterarOrdem(String ordem) {
+		this.sistema.alterarOrdem(ordem);
+	}
+	
+	/**
+	 * Retornar a representação textual de um cenário,
+	 * com a ordenação definida atualmente.
+	 * 
+	 * @param cenario o id do cenario a ser exibido
+	 * @return representacao do cenario segundo critério de ordenação
+	 */
+	public String exibirCenarioOrdenado(int cenario) {
+		return this.sistema.exibirCenarioOrdenado(cenario);
 	}
 }

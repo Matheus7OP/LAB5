@@ -9,13 +9,16 @@ import java.util.ArrayList;
  * @author Matheus Oliveira Pereira
  */
 public class ControleCenarios {
-	private ArrayList<Cenario> conjuntoCenarios;
+	private ArrayList<Cenario> conjuntoCenarios, exibicao;
+	private String ordemAtual;
 	
 	/**
 	 * Construtor do objeto ControleCenarios.
 	 */
 	public ControleCenarios() {
 		this.conjuntoCenarios = new ArrayList<Cenario>();
+		this.exibicao = new ArrayList<Cenario>();
+		this.ordemAtual = "cadastro";
 	}
 	
 	/**
@@ -304,5 +307,63 @@ public class ControleCenarios {
 		}
 		
 		return listagem;
+	}
+	
+	/**
+	 * Altera a ordem em que os cenários são
+	 * exibidos.
+	 * 
+	 * @param ordem o critério de ordenação que deve ser utilizado
+	 */
+	public void alterarOrdem(String ordem) {
+		if( ordem.trim().equals("") || ordem == null ) {
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem nao pode ser vazia ou nula");
+		}
+		
+		if( !ordem.equals("cadastro") && !ordem.equals("nome") && !ordem.equals("apostas") ) {
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+		}
+		
+		this.ordemAtual = ordem;
+	}
+	
+	/**
+	 * Retornar a representação textual de um cenário,
+	 * com a ordenação definida atualmente.
+	 * 
+	 * @param cenario o id do cenario a ser exibido
+	 * @return representacao do cenario segundo critério de ordenação
+	 */
+	public String exibirCenarioOrdenado(int cenario) {
+		if(cenario <= 0) {
+			throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario invalido");
+		}
+		
+		if(cenario > this.conjuntoCenarios.size()) {
+			throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
+		}
+		
+		int cenariosCadastrados = this.cenariosCadastrados();		
+		this.exibicao.clear();
+		
+		for(int i = 0; i < cenariosCadastrados; i++) {
+			this.exibicao.add( this.conjuntoCenarios.get(i) );
+		}
+		
+		if( this.ordemAtual.equals("cadastro") ) {
+			this.exibicao.sort(Cenario.comparadorPorId);
+		}
+		else {
+			if( this.ordemAtual.equals("apostas") ) {
+				this.exibicao.sort(Cenario.comparadorPorApostas);
+			}
+			else {
+				this.exibicao.sort(Cenario.comparadorPorNome);
+			}
+		}
+		
+		String info = "";
+		info = this.exibicao.get(cenario-1).toString();
+		return info;
 	}
 }

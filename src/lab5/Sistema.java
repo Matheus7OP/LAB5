@@ -274,4 +274,25 @@ public class Sistema {
 		
 		this.caixa -= pagamentoSeguros;
 	}
+	
+	/**
+	 * Altera a ordem em que os cenários são
+	 * exibidos.
+	 * 
+	 * @param ordem o critério de ordenação que deve ser utilizado
+	 */
+	public void alterarOrdem(String ordem) {
+		this.controleCenarios.alterarOrdem(ordem);
+	}
+	
+	/**
+	 * Retornar a representação textual de um cenário,
+	 * com a ordenação definida atualmente.
+	 * 
+	 * @param cenario o id do cenario a ser exibido
+	 * @return representacao do cenario segundo critério de ordenação
+	 */
+	public String exibirCenarioOrdenado(int cenario) {
+		return this.controleCenarios.exibirCenarioOrdenado(cenario);
+	}
 }

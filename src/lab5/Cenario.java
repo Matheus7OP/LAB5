@@ -1,6 +1,7 @@
 package lab5;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Classe que representa um cenário (que pode
@@ -8,11 +9,11 @@ import java.util.ArrayList;
  * 
  * @author Matheus Oliveira Pereira
  */
-public class Cenario {
+public class Cenario implements Comparable<Cenario> {
 	private String descricao;
 	private int id, apostasComSeguro, pagamentoSeguros;
 	private ArrayList<Aposta> apostas;
-	private boolean encerrado;
+	private boolean encerrado, aconteceu;
 	protected int caixa, bonus;
 	
 	/**
@@ -35,6 +36,7 @@ public class Cenario {
 		this.id = id;
 		this.apostas = new ArrayList<Aposta>();
 		this.encerrado = false;
+		this.aconteceu = false;
 		this.caixa = 0;
 		this.apostasComSeguro = 0;
 		this.pagamentoSeguros = 0;
@@ -78,6 +80,15 @@ public class Cenario {
 	 */
 	public int getCaixa() {		
 		return this.caixa;
+	}
+	
+	/**
+	 * Retorna a descrição do cenário.
+	 * 
+	 * @return a descricao do cenario
+	 */
+	public String getDescricao() {
+		return this.descricao;
 	}
 	
 	/**
@@ -278,15 +289,59 @@ public class Cenario {
 			}
 		}
 		
+		this.aconteceu = ocorreu;
 		this.encerrado = true;
 	}
+	
+	@Override
+	public int compareTo(Cenario c) {
+		return this.getId() - c.getId();
+	}
+	
+	public static Comparator<Cenario> comparadorPorId = new Comparator<Cenario>() {
+		@Override
+		public int compare(Cenario c1, Cenario c2) {
+			return c1.getId() - c2.getId();
+		}
+	};
+	
+	public static Comparator<Cenario> comparadorPorNome = new Comparator<Cenario>() {
+		@Override
+		public int compare(Cenario c1, Cenario c2) {
+			int resultado = c1.getDescricao().compareTo( c2.getDescricao() );
+			
+			if(resultado == 0) {
+				resultado = c1.getId() - c2.getId();
+			}
+			
+			return resultado;
+		}
+	};
+
+	public static Comparator<Cenario> comparadorPorApostas = new Comparator<Cenario>() {
+		@Override
+		public int compare(Cenario c1, Cenario c2) {
+			int resultado = c2.totalDeApostas() - c1.totalDeApostas();
+			
+			if(resultado == 0) {
+				resultado = c1.getId() - c2.getId();
+			}
+			
+			return resultado;
+		}
+	};
 	
 	@Override
 	public String toString() {
 		String representacao = this.id + " - " + this.descricao + " - ";
 		
 		if( this.encerrado ) {
-			representacao += "Finalizado (ocorreu)";
+			representacao += "Finalizado";
+			
+			if(this.aconteceu) {
+				representacao += " (ocorreu)";
+			}
+			else representacao += " (n ocorreu)";
 		}
 		else {
 			representacao += "Nao finalizado";
